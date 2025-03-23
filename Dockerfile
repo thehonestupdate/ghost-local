@@ -9,7 +9,7 @@ RUN rm -f content/themes/casper
 # Now copy your stuff
 COPY . .
 
-RUN chown -R node:node . && chmod -R 755 .
+RUN chown -R node:node content && chmod -R 755 content
 
 USER node
 
