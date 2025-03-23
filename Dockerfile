@@ -14,3 +14,5 @@ RUN chown -R node:node content && chmod -R 755 content
 USER node
 
 EXPOSE 2368
+
+CMD ["node", "current/index.js"]
