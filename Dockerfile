@@ -1,18 +1,13 @@
 FROM ghost:5-alpine
 
 ENV NODE_ENV=production
-WORKDIR /var/lib/ghost
 
-# Clean up the casper symlink (which the image includes by default)
-RUN rm -f content/themes/casper
+# Copy only the theme into the Ghost content path
+COPY content/themes/casper-custom /var/lib/ghost/content/themes/casper-custom
 
-# Now copy your stuff
-COPY . .
-
-RUN chown -R node:node content && chmod -R 755 content
+RUN chown -R node:node /var/lib/ghost/content/themes/casper-custom \
+    && chmod -R 755 /var/lib/ghost/content/themes/casper-custom
 
 USER node
 
 EXPOSE 2368
-
-CMD ["node", "current/index.js"]
