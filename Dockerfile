@@ -2,6 +2,9 @@ FROM ghost:5-alpine
 
 ENV NODE_ENV=production
 
+# Remove broken default casper symlink from Ghost image
+RUN rm -f content/themes/casper
+
 # Copy only the theme into the Ghost content path
 COPY content/themes/casper-custom /var/lib/ghost/content/themes/casper-custom
 
